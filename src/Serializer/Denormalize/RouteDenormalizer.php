@@ -20,7 +20,7 @@ class RouteDenormalizer implements DenormalizerInterface
     /** @var EntityManagerInterface */
     protected $em;
 
-    public function __construct(EntityManagerInterface $entityManager, DenormalizerInterface $denormalizer)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->em = $entityManager;
     }
