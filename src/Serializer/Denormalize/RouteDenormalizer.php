@@ -9,56 +9,35 @@
 namespace App\Serializer\Denormalize;
 
 
-use App\Entity\Layout;
 use App\Entity\Point;
 use App\Entity\Route;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Helper\DenormalizerTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class RouteDenormalizer implements DenormalizerInterface
 {
-    /** @var EntityManagerInterface */
-    protected $em;
+    use DenormalizerTrait;
 
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->em = $entityManager;
-    }
-
+    /**
+     * @param mixed $data
+     * @param string $class
+     * @param null $format
+     * @param array $context
+     * @return Route|object
+     */
     public function denormalize($data, $class, $format = null, array $context = [])
     {
-        if (array_key_exists('id', $data)) {
-            $route = $this->em->getRepository(Route::class)->find($data['id']);
-            if (!$route) {
-                $route = new Route();
-            }
-        }
+        /** @var Route $route */
+        $route = $this->getEntity($data, $class);
         $route->setCost($data['cost'] ?? null);
         $route->setLength($data['length'] ?? null);
         $route->setPriority($data['priority'] ?? null);
         $route->setTraffic($data['traffic'] ?? null);
         if (array_key_exists('points', $data)) {
             foreach ($data['points'] as $dataPoint) {
-                if (array_key_exists('id', $dataPoint)) {
-                    $point = $this->em->getRepository(Point::class)->find($dataPoint['id']);
-                    if (!$point) {
-                        $point = new Point();
-                    }
-                    $point->setType($dataPoint['type'] ?? $point->getType());
-                    $point->setLongitude($dataPoint['longitude'] ?? $point->getLongitude());
-                    $point->setLatitude($dataPoint['latitude'] ?? $point->getLatitude());
-                    if (array_key_exists('layouts', $dataPoint)) {
-                        foreach ($dataPoint['layouts'] as $dataLayout) {
-                            if (array_key_exists('id', $dataLayout)) {
-                                $layout = $this->em->getRepository(Layout::class)->find($dataLayout['id']);
-                                if ($layout) {
-                                    $point->addLayout($layout);
-                                }
-                            }
-                        }
-                    }
-                    $route->addPoint($point);
-                }
+                /** @var Point $point */
+                $point = $this->getSerializer()->denormalize($dataPoint, Point::class, $format, $context);
+                $route->addPoint($point);
             }
         }
         return $route;
@@ -66,7 +45,6 @@ class RouteDenormalizer implements DenormalizerInterface
 
     public function supportsDenormalization($data, $type, $format = null)
     {
-        $b = new $type() instanceof Route;
-        return $b;
+        return new $type() instanceof Route;
     }
 }

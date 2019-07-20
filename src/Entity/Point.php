@@ -16,19 +16,19 @@ class Point
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"point_show", "route_show"})
+     * @Groups({"point_show", "route_show", "route_create"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"point_show", "route_show", "route_create"})
+     * @Groups({"point_show", "route_show"})
      */
     private $latitude;
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"point_show", "route_show", "route_create"})
+     * @Groups({"point_show", "route_show"})
      */
     private $longitude;
 
@@ -40,13 +40,13 @@ class Point
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"point_show", "route_show", "route_create"})
+     * @Groups({"point_show", "route_show"})
      */
     private $type;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Layout")
-     * @Groups({"point_show", "route_show", "route_create"})
+     * @Groups({"point_show", "route_show"})
      */
     private $layouts;
 
