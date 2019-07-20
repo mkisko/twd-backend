@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Route index{% endblock %}
+
+{% block body %}
+    <h1>Route index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lenght</th>
+                <th>Cost</th>
+                <th>Priority</th>
+                <th>Traffic</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for route in routes %}
+            <tr>
+                <td>{{ route.id }}</td>
+                <td>{{ route.length }}</td>
+                <td>{{ route.cost }}</td>
+                <td>{{ route.priority }}</td>
+                <td>{{ route.traffic }}</td>
+                <td>
+                    <a href="{{ path('route_show', {'id': route.id}) }}">show</a>
+                    <a href="{{ path('route_edit', {'id': route.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('route_new') }}">Create new</a>
+{% endblock %}
