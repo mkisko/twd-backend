@@ -4,10 +4,12 @@ namespace App\Controller\Api;
 
 use App\Entity\Route;
 use App\Repository\RouteRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route as SymfonyRoute;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -38,5 +40,10 @@ class RouteController extends AbstractController
             ['groups' => ['route_show']]
         ));
         return $jsonResponse;
+    }
+
+    public function create(EntityManagerInterface $em, Request $request)
+    {
+
     }
 }

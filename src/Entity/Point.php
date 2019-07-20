@@ -44,9 +44,16 @@ class Point
      */
     private $type;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Layout")
+     * @Groups({"point_show", "route_show"})
+     */
+    private $layouts;
+
     public function __construct()
     {
         $this->routes = new ArrayCollection();
+        $this->layouts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -121,5 +128,31 @@ class Point
     public function __toString()
     {
         return $this->getLatitude().'-'.$this->getLongitude();
+    }
+
+    /**
+     * @return Collection|Layout[]
+     */
+    public function getLayouts(): Collection
+    {
+        return $this->layouts;
+    }
+
+    public function addLayout(Layout $layout): self
+    {
+        if (!$this->layouts->contains($layout)) {
+            $this->layouts[] = $layout;
+        }
+
+        return $this;
+    }
+
+    public function removeLayout(Layout $layout): self
+    {
+        if ($this->layouts->contains($layout)) {
+            $this->layouts->removeElement($layout);
+        }
+
+        return $this;
     }
 }

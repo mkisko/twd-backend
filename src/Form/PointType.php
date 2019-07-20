@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Layout;
 use App\Entity\Point;
 use App\Entity\Route;
 use Symfony\Component\Form\AbstractType;
@@ -19,6 +20,13 @@ class PointType extends AbstractType
             ->add('routes', null, [
                 'label' => 'Маршруты',
                 'class' => Route::class,
+                'expanded' => true,
+                'multiple' => true,
+                'by_reference' => false
+            ])
+            ->add('layouts', null, [
+                'label' => 'Слои',
+                'class' => Layout::class,
                 'expanded' => true,
                 'multiple' => true,
                 'by_reference' => false

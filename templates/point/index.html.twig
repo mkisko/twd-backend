@@ -12,6 +12,7 @@
                 <th>Latitude</th>
                 <th>Longitude</th>
                 <th>Type</th>
+                <th>Layouts</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                 <td>{{ point.latitude }}</td>
                 <td>{{ point.longitude }}</td>
                 <td>{{ point.type }}</td>
+                <td>{{ point.layouts|join(', ') }}</td>
                 <td>
                     <a href="{{ path('point_show', {'id': point.id}) }}">show</a>
                     <a href="{{ path('point_edit', {'id': point.id}) }}">edit</a>
