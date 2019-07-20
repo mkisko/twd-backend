@@ -22,13 +22,13 @@ class Point
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"point_show", "route_show"})
+     * @Groups({"point_show", "route_show", "route_create"})
      */
     private $latitude;
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"point_show", "route_show"})
+     * @Groups({"point_show", "route_show", "route_create"})
      */
     private $longitude;
 
@@ -40,13 +40,13 @@ class Point
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"point_show", "route_show"})
+     * @Groups({"point_show", "route_show", "route_create"})
      */
     private $type;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Layout")
-     * @Groups({"point_show", "route_show"})
+     * @Groups({"point_show", "route_show", "route_create"})
      */
     private $layouts;
 

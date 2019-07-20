@@ -8,9 +8,12 @@
 // any CSS you require will output into a single css file (app.css in this case)
 require('../css/app.css');
 require('../css/global.scss');
+require('bootstrap');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 const $ = require('jquery');
+
+global.$ = global.jQuery = $;
 $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
 });

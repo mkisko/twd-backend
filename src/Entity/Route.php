@@ -21,32 +21,32 @@ class Route
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Point", inversedBy="routes")
-     * @Groups({"route_show"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Point", inversedBy="routes",cascade={"persist"})
+     * @Groups({"route_show", "route_create"})
      */
     private $points;
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"route_show"})
+     * @Groups({"route_show", "route_create"})
      */
     private $length;
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"route_show"})
+     * @Groups({"route_show", "route_create"})
      */
     private $cost;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"route_show"})
+     * @Groups({"route_show", "route_create"})
      */
     private $priority;
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"route_show"})
+     * @Groups({"route_show", "route_create"})
      */
     private $traffic;
 
@@ -58,6 +58,11 @@ class Route
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**

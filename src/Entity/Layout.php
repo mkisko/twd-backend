@@ -14,7 +14,7 @@ class Layout
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"point_show", "route_show"})
+     * @Groups({"point_show", "route_show", "route_create"})
      */
     private $id;
 
@@ -43,6 +43,6 @@ class Layout
 
     public function __toString()
     {
-        return $this->getName();
+        return $this->getName() ?? '';
     }
 }

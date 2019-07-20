@@ -6,6 +6,7 @@ use App\Entity\Layout;
 use App\Entity\Point;
 use App\Entity\Route;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,13 +17,9 @@ class PointType extends AbstractType
         $builder
             ->add('latitude')
             ->add('longitude')
-            ->add('type')
-            ->add('routes', null, [
-                'label' => 'Маршруты',
-                'class' => Route::class,
-                'expanded' => true,
-                'multiple' => true,
-                'by_reference' => false
+            ->add('type', ChoiceType::class, [
+                'label' => '',
+                'choices' => ['Автодорога' => '1', 'Пешеходная зона' => '2']
             ])
             ->add('layouts', null, [
                 'label' => 'Слои',
