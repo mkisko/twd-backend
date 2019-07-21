@@ -12,11 +12,11 @@
                 <th>Id</th>
                 <th>Расстояние</th>
                 <th>Стоимость</th>
-                <th>Priority</th>
-                <th>Проходимость</th>
-                <th>Traffic</th>
-                <th>National Programs</th>
-                <th>Efficiency</th>
+                <th>Приоритет</th>
+                <th>Трафик</th>
+                <th>Национальные проекты</th>
+                <th>Востребованность</th>
+                <th>Экология</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +29,7 @@
                 <td>{{ route.traffic }}</td>
                 <td>{{ route.nationalPrograms|join(', ') }}</td>
                 <td>{{ route.efficiency }}</td>
+                <td>{{ route.ecologic }}</td>
             </tr>
         {% else %}
             <tr>

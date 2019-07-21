@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Layout{% endblock %}
-
-{% block body %}
-    <h1>Create new Layout</h1>
-
+{% block title %}Создание слоя{% endblock %}
+{% block body_title %}Создание слоя{% endblock %}
+{#{% block body_action_url %}{{ path('route_index') }}{% endblock %}#}
+{#{% block body_action_title %}Журнал {% endblock %}#}
+{% block table_content %}
+    <tbody>
     {{ include('layout/_form.html.twig') }}
-
-    <a href="{{ path('layout_index') }}">back to list</a>
+    </tbody>
 {% endblock %}

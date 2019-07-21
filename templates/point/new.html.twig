@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Point{% endblock %}
-
-{% block body %}
-    <h1>Create new Point</h1>
-
+{% block title %}Создание точки{% endblock %}
+{% block body_title %}Создание точки{% endblock %}
+{#{% block body_action_url %}{{ path('route_index') }}{% endblock %}#}
+{#{% block body_action_title %}Журнал {% endblock %}#}
+{% block table_content %}
+    <tbody>
     {{ include('point/_form.html.twig') }}
-
-    <a href="{{ path('point_index') }}">back to list</a>
+    </tbody>
 {% endblock %}

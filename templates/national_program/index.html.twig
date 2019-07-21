@@ -1,37 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}NationalProgram index{% endblock %}
+{% block title %}Национальные проекты{% endblock %}
 
-{% block body %}
-    <h1>NationalProgram index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Priority</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for national_program in national_programs %}
-            <tr>
-                <td>{{ national_program.id }}</td>
-                <td>{{ national_program.name }}</td>
-                <td>{{ national_program.priority }}</td>
-                <td>
-                    <a href="{{ path('national_program_show', {'id': national_program.id}) }}">show</a>
-                    <a href="{{ path('national_program_edit', {'id': national_program.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('national_program_new') }}">Create new</a>
+{% block body_title %}Национальные проекты{% endblock %}
+{% block table_title %}Список нац. проектов{% endblock %}
+{% block body_action_url %}{{ path('national_program_new') }}{% endblock %}
+{% block body_action_title %}Создать национальный проект{% endblock %}
+{% block table_content %}
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Название</th>
+        <th>Приоритет</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for np in national_programs %}
+        <tr>
+            <td><a href="{{ path('national_program_edit', {'id': np.id}) }}">{{ np.id }}</td>
+            <td>{{ np.name}}</td>
+            <td>{{ np.priority }}</td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="6">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
 {% endblock %}

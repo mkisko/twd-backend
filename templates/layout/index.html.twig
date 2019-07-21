@@ -1,35 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Layout index{% endblock %}
+{% block title %}Слои{% endblock %}
 
-{% block body %}
-    <h1>Layout index</h1>
+{% block body_title %}Слои{% endblock %}
+{% block table_title %}Список слоев{% endblock %}
+{% block body_action_url %}{{ path('layout_new') }}{% endblock %}
+{% block body_action_title %}Создать слой{% endblock %}
+{% block table_content %}
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Название</th>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for layout in layouts %}
-            <tr>
-                <td>{{ layout.id }}</td>
-                <td>{{ layout.name }}</td>
-                <td>
-                    <a href="{{ path('layout_show', {'id': layout.id}) }}">show</a>
-                    <a href="{{ path('layout_edit', {'id': layout.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('layout_new') }}">Create new</a>
+    </tr>
+    </thead>
+    <tbody>
+    {% for layout in layouts %}
+        <tr>
+            <td><a href="{{ path('layout_edit', {'id': layout.id}) }}">{{ layout.id }}</td>
+            <td>{{ layout.name}}</td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="6">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
 {% endblock %}

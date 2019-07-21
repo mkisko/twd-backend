@@ -1,41 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Point index{% endblock %}
+{% block title %}Точки{% endblock %}
 
-{% block body %}
-    <h1>Point index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
-                <th>Type</th>
-                <th>Layouts</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for point in points %}
-            <tr>
-                <td>{{ point.id }}</td>
-                <td>{{ point.latitude }}</td>
-                <td>{{ point.longitude }}</td>
-                <td>{{ point.type }}</td>
-                <td>{{ point.layouts|join(', ') }}</td>
-                <td>
-                    <a href="{{ path('point_show', {'id': point.id}) }}">show</a>
-                    <a href="{{ path('point_edit', {'id': point.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('point_new') }}">Create new</a>
+{% block body_title %}Точки{% endblock %}
+{% block table_title %}Список точек{% endblock %}
+{% block body_action_url %}{{ path('point_new') }}{% endblock %}
+{% block body_action_title %}Создать точку{% endblock %}
+{% block table_content %}
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Широта</th>
+        <th>Долгота</th>
+        <th>Тип</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for point in points %}
+        <tr>
+            <td><a href="{{ path('point_edit', {'id': point.id}) }}">{{ point.id }}</td>
+            <td>{{ point.latitude}}</td>
+            <td>{{ point.longitude }}</td>
+            <td>{{ point.type}}</td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="6">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
 {% endblock %}

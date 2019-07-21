@@ -19,6 +19,10 @@
     </tr>
 
     {% endfor %}
+    <tr>
+        <td>{{ form_label(form.trafficJam) }}</td>
+        <td>{{ form_widget(form.trafficJam) }}</td>
+    </tr>
 <tr>
     <td>{{ form_label(form.length) }}</td>
     <td>{{ form_widget(form.length) }}</td>
@@ -34,6 +38,14 @@
     <tr>
         <td>{{ form_label(form.cost) }}</td>
         <td>{{ form_widget(form.cost) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.nationalPrograms) }}</td>
+        <td>{{ form_widget(form.nationalPrograms) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.ecologic) }}</td>
+        <td>{{ form_widget(form.ecologic) }}</td>
     </tr>
     <tr >
         <td colspan="2"><a href="{{ path('route_index') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Отмена</a>
