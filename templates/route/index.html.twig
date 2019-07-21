@@ -1,33 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Route index{% endblock %}
+{% block title %}Велосипедные дорожки{% endblock %}
 
-{% block body %}
-    <h1>Route index</h1>
-
-    <table class="table">
+{% block body_title %}Велосипедные дорожки{% endblock %}
+{% block table_title %}Список дорожек{% endblock %}
+{% block body_action_url %}{{ path('route_new') }}{% endblock %}
+{% block body_action_title %}Создать дорожку{% endblock %}
+{% block table_content %}
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Lenght</th>
-                <th>Cost</th>
+                <th>Расстояние</th>
+                <th>Стоимость</th>
                 <th>Priority</th>
-                <th>Traffic</th>
-                <th>actions</th>
+                <th>Проходимость</th>
             </tr>
         </thead>
         <tbody>
         {% for route in routes %}
             <tr>
-                <td>{{ route.id }}</td>
+                <td><a href="{{ path('route_edit', {'id': route.id}) }}">{{ route.id }}</td>
                 <td>{{ route.length }}</td>
                 <td>{{ route.cost }}</td>
                 <td>{{ route.priority }}</td>
                 <td>{{ route.traffic }}</td>
-                <td>
-                    <a href="{{ path('route_show', {'id': route.id}) }}">show</a>
-                    <a href="{{ path('route_edit', {'id': route.id}) }}">edit</a>
-                </td>
             </tr>
         {% else %}
             <tr>
@@ -35,7 +31,4 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
-
-    <a href="{{ path('route_new') }}">Create new</a>
 {% endblock %}

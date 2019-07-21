@@ -25,6 +25,10 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addEntry('route', './assets/js/route.js')
+    .addEntry('sb', './assets/js/sb-admin-2.js')
+    .addEntry('jq-easing', './assets/js/jquery.easing.js')
+    .addEntry('chart-bundle', './assets/js/Chart.bundle.js')
+    .addEntry('jq-dataTables', './assets/js/jquery.dataTables.js')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 

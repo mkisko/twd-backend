@@ -1,16 +1,43 @@
-{{ form_start(form) }}
-<h3>points</h3>
-<ul class="points" data-prototype="{{ form_widget(form.points.vars.prototype)|e('html_attr') }}">
-    {# iterate over each existing point and render its only field: name #}
+{{ form_start(form) }} {# iterate over each existing point and render its only field: name #}
+<p class="points" data-prototype="{{ form_widget(form.points.vars.prototype)|e('html_attr') }}">
     {% for point in form.points %}
-        <li>{{ form_row(point.latitude) }}</li>
-        <li>{{ form_row(point.longitude) }}</li>
-        <li>{{ form_row(point.type) }}</li>
-        <li>{{ form_row(point.layouts) }}</li>
+        <tr>
+            <td>{{ form_label(point.latitude) }}</td>
+            <td>{{ form_widget(point.latitude) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(point.longitude) }}</td>
+            <td>{{ form_widget(point.longitude) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(point.type) }}</td>
+            <td>{{ form_widget(point.type) }}</td>
+        </tr>
+    <tr>
+        <td>{{ form_label(point.layouts) }}</td>
+        <td>{{ form_widget(point.layouts) }}</td>
+    </tr>
+
     {% endfor %}
-</ul>
-
+<tr>
+    <td>{{ form_label(form.length) }}</td>
+    <td>{{ form_widget(form.length) }}</td>
+</tr>
+    <tr>
+        <td>{{ form_label(form.priority) }}</td>
+        <td>{{ form_widget(form.priority) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.traffic) }}</td>
+        <td>{{ form_widget(form.traffic) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.cost) }}</td>
+        <td>{{ form_widget(form.cost) }}</td>
+    </tr>
+    <tr >
+        <td colspan="2"><a href="{{ path('route_index') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Отмена</a>
+        <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">{{ button_label|default('Сохранить') }}</button></td>
+    </tr>
 {{ form_widget(form) }}
-<button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
-

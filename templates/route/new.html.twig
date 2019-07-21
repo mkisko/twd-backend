@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Route{% endblock %}
-
-{% block body %}
-    <h1>Create new Route</h1>
-
+{% block title %}Создание дорожки{% endblock %}
+{% block body_title %}Создание дорожки{% endblock %}
+{% block body_action_url %}{{ path('route_index') }}{% endblock %}
+{% block body_action_title %}Журнал {% endblock %}
+{% block table_content %}
+    <tbody>
     {{ include('route/_form.html.twig') }}
-
-    <a href="{{ path('route_index') }}">back to list</a>
+    </tbody>
 {% endblock %}
 
 {% block javascripts %}

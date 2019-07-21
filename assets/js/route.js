@@ -1,13 +1,13 @@
 var $collectionHolder;
 
 // setup an "add a point" link
-var $addPointButton = $('<button type="button" class="add_point_link">Add a point</button>');
-var $newLinkLi = $('<li></li>').append($addPointButton);
+var $addPointButton = $('<button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Добавить точку</button>');
+var $newLinkLi = $('<tr></tr>').append($addPointButton);
 
 console.log($addPointButton);
 jQuery(document).ready(function () {
     // Get the ul that holds the collection of points
-    $collectionHolder = $('ul.points');
+    $collectionHolder = $('p.points');
 
     // add the "add a point" anchor and li to the points ul
     $collectionHolder.append($newLinkLi);
@@ -43,6 +43,6 @@ function addPointForm($collectionHolder, $newLinkLi) {
     $collectionHolder.data('index', index + 1);
 
     // Display the form in the page in an li, before the "Add a point" link li
-    var $newFormLi = $('<li></li>').append(newForm);
+    var $newFormLi = $('<tr></tr>').append(newForm);
     $newLinkLi.before($newFormLi);
 }

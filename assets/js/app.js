@@ -9,6 +9,12 @@
 require('../css/app.css');
 require('../css/global.scss');
 require('bootstrap');
+require('../css/all.css');
+require('../css/all.min.css');
+require('../css/sb-admin-2.css');
+require('../css/sb-admin-2.min.css');
+require('../css/dataTables.bootstrap4.css');
+require('../css/dataTables.bootstrap4.min.css');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 const $ = require('jquery');
