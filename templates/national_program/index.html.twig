@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NationalProgram index{% endblock %}
+
+{% block body %}
+    <h1>NationalProgram index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Priority</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for national_program in national_programs %}
+            <tr>
+                <td>{{ national_program.id }}</td>
+                <td>{{ national_program.name }}</td>
+                <td>{{ national_program.priority }}</td>
+                <td>
+                    <a href="{{ path('national_program_show', {'id': national_program.id}) }}">show</a>
+                    <a href="{{ path('national_program_edit', {'id': national_program.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('national_program_new') }}">Create new</a>
+{% endblock %}

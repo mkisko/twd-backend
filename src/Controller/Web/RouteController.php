@@ -5,6 +5,7 @@ namespace App\Controller\Web;
 use App\Entity\Route;
 use App\Form\RouteType;
 use App\Repository\RouteRepository;
+use App\Service\RouteService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +19,10 @@ class RouteController extends AbstractController
     /**
      * @SymfonyRoute("/", name="route_index", methods={"GET"})
      */
-    public function index(RouteRepository $routeRepository): Response
+    public function index(RouteService $routeRepository): Response
     {
         return $this->render('route/index.html.twig', [
-            'routes' => $routeRepository->findAll(),
+            'routes' => $routeRepository->findRoutes(),
         ]);
     }
 

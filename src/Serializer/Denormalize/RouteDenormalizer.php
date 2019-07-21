@@ -9,6 +9,7 @@
 namespace App\Serializer\Denormalize;
 
 
+use App\Entity\NationalProgram;
 use App\Entity\Point;
 use App\Entity\Route;
 use App\Helper\DenormalizerTrait;
@@ -33,11 +34,25 @@ class RouteDenormalizer implements DenormalizerInterface
         $route->setLength($data['length'] ?? null);
         $route->setPriority($data['priority'] ?? null);
         $route->setTraffic($data['traffic'] ?? null);
+        $route->setTrafficJam($data['trafficJam'] ?? null);
+        $route->setEcologic($data['ecologic'] ?? null);
         if (array_key_exists('points', $data)) {
             foreach ($data['points'] as $dataPoint) {
                 /** @var Point $point */
                 $point = $this->getSerializer()->denormalize($dataPoint, Point::class, $format, $context);
                 $route->addPoint($point);
+            }
+        }
+        if (array_key_exists('nationalPrograms', $data)) {
+            foreach ($data['nationalPrograms'] as $dataNationalProgram) {
+                /** @var NationalProgram $nationalProgram */
+                $nationalProgram = $this->getSerializer()->denormalize(
+                    $dataNationalProgram,
+                    NationalProgram::class,
+                    $format,
+                    $context
+                );
+                $route->addNationalProgram($nationalProgram);
             }
         }
         return $route;
