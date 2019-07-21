@@ -41,6 +41,6 @@ class RouteService
         $priorityK = $route->getPriority() ?: 1;
         $trafficK = $route->getTraffic() ?: 1;
         $sumNationalProgramK = $route->getSumNationalProgram() ?: 1;
-        return $costK*$lengthK*$priorityK*$trafficK*$sumNationalProgramK;
+        return $lengthK*$priorityK*$trafficK*$sumNationalProgramK/$costK;
     }
 }
