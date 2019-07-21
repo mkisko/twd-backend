@@ -18,6 +18,8 @@ class RouteType extends AbstractType
             ->add('cost')
             ->add('priority')
             ->add('traffic')
+            ->add('trafficJam')
+            ->add('ecologic')
             ->add('points', CollectionType::class, [
                 'label' => 'Точки',
                 'entry_type' => PointType::class,
