@@ -13,6 +13,8 @@
                 <th>Cost</th>
                 <th>Priority</th>
                 <th>Traffic</th>
+                <th>National Programs</th>
+                <th>Efficiency</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,6 +26,8 @@
                 <td>{{ route.cost }}</td>
                 <td>{{ route.priority }}</td>
                 <td>{{ route.traffic }}</td>
+                <td>{{ route.nationalPrograms|join(', ') }}</td>
+                <td>{{ route.efficiency }}</td>
                 <td>
                     <a href="{{ path('route_show', {'id': route.id}) }}">show</a>
                     <a href="{{ path('route_edit', {'id': route.id}) }}">edit</a>

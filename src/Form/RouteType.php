@@ -24,6 +24,7 @@ class RouteType extends AbstractType
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
             ])
+            ->add('nationalPrograms')
         ;
     }
 

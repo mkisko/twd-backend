@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit NationalProgram{% endblock %}
+
+{% block body %}
+    <h1>Edit NationalProgram</h1>
+
+    {{ include('national_program/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('national_program_index') }}">back to list</a>
+
+    {{ include('national_program/_delete_form.html.twig') }}
+{% endblock %}

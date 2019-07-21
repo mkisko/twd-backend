@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Route;
+use App\Filter\RouteFilter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -17,6 +18,24 @@ class RouteRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Route::class);
+    }
+
+    public function findByFilter(RouteFilter $filter)
+    {
+        $qb = $this->createQueryBuilder('r');
+        if ($filter->getCost()) {
+            $qb->andWhere($qb->expr()->gte('r.cost', ':cost'));
+            $qb->setParameter('cost', $filter->getCost());
+        }
+        if ($filter->getPriority()) {
+            $qb->andWhere($qb->expr()->gte('r.priority', ':priority'));
+            $qb->setParameter('priority', $filter->getPriority());
+        }
+        if ($filter->getTraffic()) {
+            $qb->andWhere($qb->expr()->gte('r.traffic', ':traffic'));
+            $qb->setParameter('traffic', $filter->getTraffic());
+        }
+        return $qb->getQuery()->getResult();
     }
 
     // /**

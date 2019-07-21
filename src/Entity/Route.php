@@ -50,9 +50,34 @@ class Route
      */
     private $traffic;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\NationalProgram", inversedBy="routes")
+     * @Groups({"route_show", "route_create"})
+     */
+    private $nationalPrograms;
+
+    /**
+     * @var float|null
+     * @Groups({"route_show"})
+     */
+    private $efficiency;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     * @Groups({"route_show", "route_create"})
+     */
+    private $trafficJam;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     * @Groups({"route_show", "route_create"})
+     */
+    private $ecologic;
+
     public function __construct()
     {
         $this->points = new ArrayCollection();
+        $this->nationalPrograms = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -142,5 +167,80 @@ class Route
     public function __toString()
     {
         return (string)$this->getId();
+    }
+
+    /**
+     * @return Collection|NationalProgram[]
+     */
+    public function getNationalPrograms(): Collection
+    {
+        return $this->nationalPrograms;
+    }
+
+    public function addNationalProgram(NationalProgram $nationalProgram): self
+    {
+        if (!$this->nationalPrograms->contains($nationalProgram)) {
+            $this->nationalPrograms[] = $nationalProgram;
+        }
+
+        return $this;
+    }
+
+    public function removeNationalProgram(NationalProgram $nationalProgram): self
+    {
+        if ($this->nationalPrograms->contains($nationalProgram)) {
+            $this->nationalPrograms->removeElement($nationalProgram);
+        }
+
+        return $this;
+    }
+
+    public function getSumNationalProgram()
+    {
+        $sum = 0;
+        foreach ($this->getNationalPrograms() as $item) {
+            $sum += $item->getPriority();
+        }
+        return $sum;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getEfficiency(): ?float
+    {
+        return $this->efficiency;
+    }
+
+    /**
+     * @param float|null $efficiency
+     */
+    public function setEfficiency(?float $efficiency): void
+    {
+        $this->efficiency = $efficiency;
+    }
+
+    public function getTrafficJam(): ?float
+    {
+        return $this->trafficJam;
+    }
+
+    public function setTrafficJam(?float $trafficJam): self
+    {
+        $this->trafficJam = $trafficJam;
+
+        return $this;
+    }
+
+    public function getEcologic(): ?float
+    {
+        return $this->ecologic;
+    }
+
+    public function setEcologic(?float $ecologic): self
+    {
+        $this->ecologic = $ecologic;
+
+        return $this;
     }
 }
