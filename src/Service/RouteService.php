@@ -23,7 +23,7 @@ class RouteService
         $this->repository = $repository;
     }
 
-    /** @var Route[] */
+    /** @return Route[] */
     public function findRoutes(RouteFilter $routeFilter = null)
     {
         $entities = $this->repository->findByFilter($routeFilter ?: new RouteFilter());

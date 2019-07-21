@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ReportCost{% endblock %}
+
+{% block body %}
+    <h1>ReportCost</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ report_cost.id }}</td>
+            </tr>
+            <tr>
+                <th>Cost</th>
+                <td>{{ report_cost.cost }}</td>
+            </tr>
+            <tr>
+                <th>DateTime</th>
+                <td>{{ report_cost.dateTime }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('report_report_cost_index') }}">back to list</a>
+
+    <a href="{{ path('report_report_cost_edit', {'id': report_cost.id}) }}">edit</a>
+
+    {{ include('report_report_cost/_delete_form.html.twig') }}
+{% endblock %}

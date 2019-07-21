@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Создание отчета{% endblock %}
+{% block body_title %}Создание отчета{% endblock %}
+
+{% block table_content %}
+
+    {{ include('report/report_cost/_form.html.twig') }}
+
+    <a href="{{ path('report_report_cost_index') }}">back to list</a>
+{% endblock %}

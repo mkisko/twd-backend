@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Создание отчета{% endblock %}
+{% block body_title %}Создание отчета{% endblock %}
+
+{% block table_content %}
+    <h1>Create new ReportLength</h1>
+
+    {{ include('report/report_length/_form.html.twig') }}
+
+    <a href="{{ path('report_report_length_index') }}">back to list</a>
+{% endblock %}

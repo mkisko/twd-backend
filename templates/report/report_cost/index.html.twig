@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ReportCost index{% endblock %}
+
+{% block body %}
+    <h1>ReportCost index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cost</th>
+                <th>DateTime</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for report_cost in report_costs %}
+            <tr>
+                <td>{{ report_cost.id }}</td>
+                <td>{{ report_cost.cost }}</td>
+                <td>{{ report_cost.dateTime }}</td>
+                <td>
+                    <a href="{{ path('report_report_cost_show', {'id': report_cost.id}) }}">show</a>
+                    <a href="{{ path('report_report_cost_edit', {'id': report_cost.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('report_report_cost_new') }}">Create new</a>
+{% endblock %}

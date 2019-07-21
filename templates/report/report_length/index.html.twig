@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ReportLength index{% endblock %}
+
+{% block body %}
+    <h1>ReportLength index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateTime</th>
+                <th>Length</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for report_length in report_lengths %}
+            <tr>
+                <td>{{ report_length.id }}</td>
+                <td>{{ report_length.dateTime }}</td>
+                <td>{{ report_length.length }}</td>
+                <td>
+                    <a href="{{ path('report_report_length_show', {'id': report_length.id}) }}">show</a>
+                    <a href="{{ path('report_report_length_edit', {'id': report_length.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('report_report_length_new') }}">Create new</a>
+{% endblock %}

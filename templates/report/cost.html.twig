@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Велосипедные дорожки{% endblock %}
+
+{% block body_title %}Отчет по стоимости{% endblock %}
+{% block table_title %}Отчет по стоимости{% endblock %}
+{% block body_action_url %}{% endblock %}
+{% block body_action_title %}Отчет по стоимости{% endblock %}
+{% block table_content %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+    <script type="text/javascript">
+        google.charts.load('current', {packages: ['corechart', 'line']});
+        google.charts.setOnLoadCallback(drawBasic);
+
+        function drawBasic() {
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'X');
+            data.addColumn('number', 'Саратов');
+
+            data.addRows(
+                {{ array|json_encode|raw }}
+            );
+
+            var options = {
+                hAxis: {
+                    title: 'Дата'
+                },
+                vAxis: {
+                    title: 'Затраты на возведение велодорожек, т.р.'
+                },
+                curveType: 'function',
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+{% endblock %}
